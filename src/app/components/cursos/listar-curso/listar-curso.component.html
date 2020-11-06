@@ -1,0 +1,54 @@
+<div class="center">
+    <button mat-icon-button>    
+      <a mat-icon-button [routerLink]="['/rol/add']">
+        <mat-icon  class="add" color="accent">add_circle</mat-icon>
+      </a>
+    </button>
+  </div>
+  <nav class="center">
+    <table mat-table [dataSource]="cursos" class="mat-elevation-z8">
+      <ng-container matColumnDef="ID_CURSO">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let curso"> {{curso.ID_CURSO}} </td>
+      </ng-container>
+      <ng-container matColumnDef="NOMBRE">
+        <th mat-header-cell *matHeaderCellDef> CURSO </th>
+        <td mat-cell *matCellDef="let curso"> {{curso.NOMBRE}} </td>
+      </ng-container>
+      <ng-container matColumnDef="CR">
+        <th mat-header-cell *matHeaderCellDef> CREDITOS </th>
+        <td mat-cell *matCellDef="let curso"> {{curso.CR}} </td>
+      </ng-container>
+      <ng-container matColumnDef="HT">
+        <th mat-header-cell *matHeaderCellDef> H.TEORICAS </th>
+        <td mat-cell *matCellDef="let curso"> {{curso.HT}} </td>
+      </ng-container>
+      <ng-container matColumnDef="HP">
+          <th mat-header-cell *matHeaderCellDef> H.PRACTICAS </th>
+          <td mat-cell *matCellDef="let curso"> {{curso.HP}} </td>
+        </ng-container>
+      <ng-container matColumnDef="ESTADO">
+          <th mat-header-cell *matHeaderCellDef> ESTADO </th>
+          <td mat-cell *matCellDef="let curso"> {{curso.ESTADO}} </td>
+        </ng-container>
+        <ng-container matColumnDef="EDITAR">
+          <th mat-header-cell *matHeaderCellDef>Editar</th>
+          <td mat-cell *matCellDef="let curso">
+            <a mat-icon-button [routerLink]="['/editar', curso.ID_CURSO]">
+              <mat-icon color="primary">edit</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="ELIMINAR">
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+          <td mat-cell *matCellDef="let curso">
+            <button (click)="delCurso(curso.ID_CURSO)" mat-icon-button>
+              <mat-icon color="warn">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['ID_CURSO', 'NOMBRE', 'CR', 'HT', 'HP', 'ESTADO', 'EDITAR', 'ELIMINAR']"></tr>
+      <tr mat-row *matRowDef="let fila; columns: ['ID_CURSO', 'NOMBRE', 'CR', 'HT', 'HP', 'ESTADO', 'EDITAR', 'ELIMINAR'];"></tr>
+    </table>
+  </nav>
