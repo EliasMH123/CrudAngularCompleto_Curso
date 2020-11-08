@@ -3,22 +3,39 @@
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>Modificar</mat-card-title>
-          <mat-card-subtitle>Curso</mat-card-subtitle>
+          <mat-card-subtitle>Cursos</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
         <mat-card-content>
             <mat-form-field appearance="outline">
                 <mat-label>Curso</mat-label>
-                <input matInput placeholder="Ingresar Curso">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <input matInput [(ngModel)]="curso.nombre" placeholder="Nuevo Nombre">
+                <mat-icon matSuffix></mat-icon>
             </mat-form-field>
-            <section>
-                <div class="example-button-row">
-                    <button mat-raised-button color="primary">Primary</button>
-                </div>
-            </section>
         </mat-card-content>
+        <mat-card-content>
+            <mat-form-field appearance="outline">
+                <mat-label>Creditos</mat-label>
+                <input matInput [(ngModel)]="curso.cr" placeholder="Nuevo N° de Creditos">
+                <mat-icon matSuffix></mat-icon>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-content>
+            <mat-form-field appearance="outline">
+                <mat-label>H.Teoricas</mat-label>
+                <input matInput [(ngModel)]="curso.ht" placeholder="Nuevo N° de Horas Teoricas">
+                <mat-icon matSuffix></mat-icon>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-content>
+            <mat-form-field appearance="outline">
+                <mat-label>H.Practicas</mat-label>
+                <input matInput [(ngModel)]="curso.hp" placeholder="Nuevo N° de Horas Practicas">
+                <mat-icon matSuffix></mat-icon>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="modificarCurso()">Modificar</button>
+            <a mat-raised-button routerLink="/listar" color="warn">Cancelar</a>
+        </mat-card-actions>
       </mat-card>
-
-    <!---->
 </div>

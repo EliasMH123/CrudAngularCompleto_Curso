@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Curso } from 'src/app/models/curso';
 import { CursoService } from 'src/app/services/curso.service';
 import Swal from 'sweetalert2';
@@ -8,25 +9,41 @@ import Swal from 'sweetalert2';
   styleUrls: ['./listar-curso.component.css']
 })
 export class ListarCursoComponent implements OnInit {
-  cursos:Curso[];
-  constructor(private cursoService:CursoService) { }
+  cursos:any;
 
+  constructor(private cursoService:CursoService, private router: Router) { }
   ngOnInit(): void {
-    //var data = this.cursos;
-    this.cursoService.getCursos().subscribe(
-      (data) => {
-      this.cursos= data['cursor_cursos'];
-      console.log(this.cursos)
+    this.listar();
     }
-    )
+  delCurso(num:number):void{
+        Swal.fire({
+          title: 'Estas seguro?',
+          text: "No podras reverti esto!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.cursoService.deleteCurso(num).subscribe(
+              response=>{
+            this.listar()
+            Swal.fire(
+              'Eliminado!',
+              'El registro ha sido eliminado.',
+              'success'
+            )})
+          }
+          }
+        )   
   }
-  delRol(num:number):void{
-    Swal.fire(
-      'The Internet?',
-      'That thing is still around?',
-      'question'
-    )
+  listar():void{
+    this.cursoService.getCursos().subscribe(
+      (data)=>{
+        this.cursos = data['cursor_cursos'];
+      }
+    ) 
   }
-
 
 }
